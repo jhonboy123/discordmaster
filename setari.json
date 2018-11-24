@@ -1,0 +1,23 @@
+{
+    "prefix": "!",
+    "rainbowdelay": 250,
+    "rainbowcommand": "rainbow",
+    "rainbowstop": "stop",
+	"rainbowhelp": "rhelp",
+    "rainbowrole": [
+        "#9400D3",
+        "#0000FF",
+        "#00FF00",
+        "#FFFF00",
+        "#FF7F00",
+        "#FF0000"
+    ],
+    "messageresponse": {
+        "missingperm": "Error... see help at !rhelp",
+        "success": "Rainbow mode started for your requested role",
+        "rainbowstop": "Ok rainbow is over",
+        "rolenotfound": "The requested role you typed was not found",
+		"rainbowhelp": "Type !rainbow @your_role",
+		"rainbowhelp2": "Create a role with Administrator access, put it above the role you want to rainbow then asign it to me"
+    }
+}
