@@ -1,3 +1,9 @@
+var express = require('express');
+var app = express();
+app.get("/", (request, response) => {
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
 const Discord = require("discord.js") 
 const client = new Discord.Client();
 const settings = require("./setari.json")
@@ -8,15 +14,17 @@ var rainbow2 = "false";
 bot.on('ready', async => {
 console.log("Ready!" + "\n" + "Numele si ID-ul Botului: " + bot.user.tag + "\n" + "Servere: "  + bot.guilds.size + "\n" + "Utilizatori: " + bot.users.size)
 bot.user.setActivity('.:: !rhelp ::.')
+bot.user.setActivity(".:: !rhelp ::.", {
+  type: "STREAMING",
+  url: "https://www.twitch.tv/tfue"
+});
 });
 bot.on('message', message => {
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
     let args = messageArray.slice(1);
-	if(message.channel.name == undefined)
+	if(message.channel.name != undefined)
 	{
-		//donothing
-	}
     if(command === settings.prefix + settings.rainbowcommand) {
 		message.react("✔");
 		rainbowing = "true";
@@ -112,9 +120,12 @@ bot.on('message', message => {
 	}
 	if(command === settings.prefix + "rinvite" && message.member.permissions.has("ADMINISTRATOR")) {
 		message.react("✔");
-		message.author.send("Invite me here from the link below");
+		message.author.send("Invite me to your server from the link below");
 		message.author.send("https://discordapp.com/api/oauth2/authorize?client_id=456483243454234636&permissions=0&scope=bot");
 		
+	}
+  if(command === settings.prefix + "restart04" && message.member.permissions.has("ADMINISTRATOR")) {
+		process.exit()
 	}
 			
 			
@@ -122,5 +133,5 @@ bot.on('message', message => {
  // console.log(`New User "${member.user.username}" has joined "${member.guild.name}"` );
  // member.guild.channels.get("welcome").send(`"${member.user.username}" has joined this server`);
 //}
-});
+  }});
 bot.login(settings.token).catch(err=> console.log("Incorrect Token was provided"))
